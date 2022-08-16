@@ -16,6 +16,7 @@ root = Tk()
 root.title("Enigma~Testing")
 root.geometry('900x900') 
 
+# ------>plotting the dashboard
 def plot():
     file_name = myTextbox.get()
     # get the size of the file
