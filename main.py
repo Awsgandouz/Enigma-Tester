@@ -58,6 +58,7 @@ def solve():
     label1 = Label(root,font = ("Helvetica" , 15),text="The size of the current file is "+str(size_of_file) + " bytes")
     label1.pack()
     plot()
+    os.system("clear")
     button = Button (root, text="Exit", font = ("Helvetica" , 15) ,command=root.destroy)
     button.pack()
 
@@ -72,6 +73,4 @@ myButton = Button(root , text="Test the speed!" ,font = ("Helvetica" , 15) ,comm
 myButton.pack()
 
 
-
 root.mainloop()
-
