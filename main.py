@@ -42,12 +42,13 @@ def tracer():
 
 #---->solve app ui
 def solve():
-    file_name = myTextbox.get()
-    size_of_file = os.path.getsize(file_name)
-    label1 = Label(root,font = ("Helvetica" , 15),text="The size of the current file is "+str(size_of_file) + " bytes")
-    label1.pack()
+    #file_name = myTextbox.get()
+    #size_of_file = os.path.getsize(file_name)
+    #label1 = Label(root,font = ("Helvetica" , 15),text="The size of the current file is "+str(size_of_file) + " bytes")
+    #label1.pack()
     tracer()
     os.system("clear")
+    # exit button
     button = Button (root, text="Exit", font = ("Helvetica" , 15) ,command=root.destroy)
     button.pack()
 
