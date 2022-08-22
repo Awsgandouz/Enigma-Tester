@@ -1,15 +1,15 @@
 from cProfile import label
 from cgitb import text
+from ctypes import sizeof
 from fileinput import filename
 from cProfile import label
 from cgitb import text
 from fileinput import filename
 import os
 from tkinter import *
-from PIL import Image, ImageTk
-from matplotlib.figure import Figure
-from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationToolbar2Tk)
 import matplotlib.pyplot as plt
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+from pandas import DataFrame
   
 # Tkinter GUI
 os.system("clear")
@@ -24,7 +24,7 @@ def tracer():
     file_name = myTextbox.get()
     size = []
     speed = []
-    for i in range(1,11):
+    for i in range(1,11,2):
         size_of_file = os.path.getsize(file_name)
         size.append(i*size_of_file)
         bashCommand = "openssl speed -bytes " + str(size_of_file) + "  aes-128-cbc 2> open "
@@ -38,15 +38,24 @@ def tracer():
             first_line = first_line.split(' ')
             speed.append(int(first_line[1]))
     
-    plt.plot(size ,speed)
-    plt.show()
+    data = {'Size': size,'Speed': speed}
+    df = DataFrame(data,columns=['Size','Speed'])
+    fig = plt.Figure(figsize=(6,5), dpi=100)
+    ax = fig.add_subplot(111)
+    line = FigureCanvasTkAgg(fig, root)
+    line.get_tk_widget().pack(fill=BOTH)
+    df = df[['Size','Speed']].groupby('Size').sum()
+    df.plot(kind='line', legend=True, ax=ax, color='r',marker='o', fontsize=10)
+    ax.set_title('Size Vs. Speed')
 
+    
 #---->solve app ui
 def solve():
     #file_name = myTextbox.get()
     #size_of_file = os.path.getsize(file_name)
     #label1 = Label(root,font = ("Helvetica" , 15),text="The size of the current file is "+str(size_of_file) + " bytes")
     #label1.pack()
+    
     tracer()
     os.system("clear")
     # exit button
