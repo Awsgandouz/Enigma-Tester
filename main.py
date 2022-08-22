@@ -30,7 +30,8 @@ def tracer():
         bashCommand = "openssl speed -bytes " + str(size_of_file) + "  aes-128-cbc 2> open "
         os.system(bashCommand) 
         os.system("cut -d' ' -f2,10 open >output.txt")
-        os.system("cp file_name file_name")
+        os.system("cat file_name | tee -a file_name > /dev/null")
+        # or os.system("cp file_name file_name")
         with open('output.txt') as f:
             first_line = f.readline()
             print(first_line)
