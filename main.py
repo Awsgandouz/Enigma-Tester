@@ -139,7 +139,7 @@ class App(customtkinter.CTk):
         
         
     def load_image(self, path, image_size):
-        return ImageTk.PhotoImage(Image.open(path).resize((image_size, image_size)))
+        return ImageTk.PhotoImage(Image.open(path).resize((image_size, image_size))) 
 
     
     def button_event(self):
