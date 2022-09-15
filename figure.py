@@ -24,18 +24,19 @@ root.configure(background='#ababab')
 # ------>plotting the dashboard
 def tracer():
 
-    if(argv[2]=="False"):
+    if(argv[2]=="AES" or argv[2]=="aes"):
         size = []
         speed = []
+        file_name = argv[1]
         for i in range(1,30,2):
             os.system("clear")
-            size_of_file = os.path.getsize(argv[1])
+            size_of_file = os.path.getsize(file_name)
             size.append(i*size_of_file)
             bashCommand = "openssl speed -bytes " + str(size_of_file) + " aes-128-cbc 2> open_aes "
             os.system(bashCommand) 
-            os.system("cut -d' ' -f2,10 open_aes >output.txt")
-            os.system("cat argv[1] | tee -a argv[1] > /dev/null")
-            # or os.system("cp argv[1] argv[1]")
+            os.system("cut -d' ' -f2,10 open_aes >output.txt") 
+            os.system("cat file_name | tee -a file_name > /dev/null")
+
             with open('output.txt') as f:
                 first_line = f.readline()
                 first_line = first_line.split(' ')
@@ -52,18 +53,20 @@ def tracer():
         line.get_tk_widget().pack(fill=BOTH)
         df = df[['Size','Speed']].groupby('Size').sum()
         df.plot(kind='line', legend=True, ax=ax, color='r',marker='o', fontsize=10)
-        ax.set_title('Size Vs. Speed')
+        ax.set_title('Speed Vs. File Size')
     else :
         size_of_key1 = [] 
         size_of_key2 = []
         speed1 = [] 
         speed2= []
         
+        '''
         
         bashCommand = " openssl speed rsa 2> open_rsa "
         os.system(bashCommand) 
         
-        
+        '''
+
         os.system("grep -w private open_rsa | cut -d' ' -f8,9 > pv.txt ")
         os.system("grep -w public open_rsa | cut -d' ' -f8,9 > pb.txt ")
         
@@ -71,13 +74,13 @@ def tracer():
         lines = f1.readlines()
         for s in lines :
             line = s.split(' ')
-            size_of_key1.append(int(s[1]))
-            speed1.append(int(s[0]))
+            size_of_key1.append(int(line[1]))
+            speed1.append(int(line[0]))
         f1.close()
         
         data = {'Size': size_of_key1,'Speed': speed1}
         df = DataFrame(data,columns=['Size','Speed'])
-        fig = plt.Figure(figsize=(6,5), dpi=100)
+        fig = plt.Figure(figsize=(6,5), dpi=90)
         fig.patch.set_facecolor('#ababab')
         ax = fig.add_subplot(111)
         ax.patch.set_facecolor('#ababab')
@@ -85,20 +88,20 @@ def tracer():
         line.get_tk_widget().pack(fill=BOTH)
         df = df[['Size','Speed']].groupby('Size').sum()
         df.plot(kind='line', legend=True, ax=ax, color='r',marker='o', fontsize=10)
-        ax.set_title('Size of key Vs. Speed for public key')
+        ax.set_title('Speed Vs. Size of Public key')
         
 
         f2 = open('pv.txt' , "r")
         lines = f2.readlines()
         for s in lines :
             line = s.split(' ')
-            size_of_key2.append(int(s[1]))
-            speed2.append(int(s[0]))
+            size_of_key2.append(int(line[1]))
+            speed2.append(int(line[0]))
         f2.close()
         
         data = {'Size': size_of_key2,'Speed': speed2}
         df = DataFrame(data,columns=['Size','Speed'])
-        fig = plt.Figure(figsize=(6,5), dpi=100)
+        fig = plt.Figure(figsize=(6,5), dpi=90)
         fig.patch.set_facecolor('#ababab')
         ax = fig.add_subplot(111)
         ax.patch.set_facecolor('#ababab')
@@ -106,7 +109,7 @@ def tracer():
         line.get_tk_widget().pack(fill=BOTH)
         df = df[['Size','Speed']].groupby('Size').sum()
         df.plot(kind='line', legend=True, ax=ax, color='r',marker='o', fontsize=10)
-        ax.set_title('Size of key Vs. Speed for private key')        
+        ax.set_title('Speed Vs. Size of Private key')        
     
 #---->solve app ui
 def solve():
