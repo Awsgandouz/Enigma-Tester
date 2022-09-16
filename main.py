@@ -48,9 +48,9 @@ class App(customtkinter.CTk):
         self.frame_info.rowconfigure(0, weight=1)
         self.frame_info.columnconfigure(0, weight=1)
         self.label_info_1 = customtkinter.CTkLabel(master=self.frame_info,
-                                                   text="Enigma tester is a Desktop application\n " +
-                                                        "which is used to calculate the speed ,\n" +
-                                                        "of encryption algorithms like AES and RSA\n" ,
+                                                   text=text="""  Enigma tester's purpose is to compare
+                                                                the speed of famous encryption algorithms
+                                                           like RSA and AES in order to optimise their usage""" ,
                                                    height=20,
                                                    corner_radius=6, 
                                                    fg_color=("white", "#363636"),
