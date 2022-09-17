@@ -8,7 +8,6 @@ Clone the repo
 ```
 git clone https://github.com/Awsgandouz/Enigma-Tester.git
 cd Enigma_Tester/src
-
 ```
 
 Install the required modules
