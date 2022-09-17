@@ -1,5 +1,5 @@
 # Enigma-Tester
-Python application to test the performance of some OpenSSL algorthims for encryption and decryption algorithms 
+Python application to test the performance of some OpenSSL algorthims for encryption and decryption 
 
 ### Installation 
 
