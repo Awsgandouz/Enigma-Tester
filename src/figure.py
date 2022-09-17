@@ -60,13 +60,9 @@ def tracer():
         speed1 = [] 
         speed2= []
         
-        '''
-        
         bashCommand = " openssl speed rsa 2> open_rsa "
         os.system(bashCommand) 
-        
-        '''
-
+      
         os.system("grep -w private open_rsa | cut -d' ' -f8,9 > pv.txt ")
         os.system("grep -w public open_rsa | cut -d' ' -f8,9 > pb.txt ")
         
