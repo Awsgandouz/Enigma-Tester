@@ -7,12 +7,13 @@ Clone the repo
 
 ```
 git clone https://github.com/Awsgandouz/Enigma-Tester.git
-cd Enigma-Tester/src
+cd Enigma-Tester
 ```
 
 Install the required modules
 ```
 pip install -r requirements.txt
+cd src
 ```
 
 ### Usage 
