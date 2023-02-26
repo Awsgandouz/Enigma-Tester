@@ -1,6 +1,8 @@
 Summer project first year computer science engineering
 # Enigma-Tester
 Python application to test the performance of some OpenSSL algorthims for encryption and decryption 
+![enigma](https://user-images.githubusercontent.com/94719195/221413866-ed6ad7ba-56db-4819-a470-409315ed01d9.png)
+
 
 ### Installation 
 
